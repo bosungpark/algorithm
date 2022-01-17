@@ -1,0 +1,12 @@
+import sys
+
+quizs=sorted(list((int(sys.stdin.readline()),i+1) for i in range(8)), reverse=True)
+
+answer=0
+answer_list=list()
+for i in range(5):
+    answer+=quizs[i][0]
+    answer_list.append(quizs[i][1])
+
+print(answer)
+print(*sorted(answer_list))
