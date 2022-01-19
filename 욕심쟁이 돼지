@@ -1,0 +1,22 @@
+T=int(input())
+
+for _ in range(T):
+    N=int(input())
+    feeds=list(map(int, input().split()))
+
+    tomorrow=feeds.copy()
+    accumulated_feed=sum(feeds)
+    date=1
+    while accumulated_feed<=N:
+        for pig in range(len(feeds)):
+            
+            left=feeds[(pig-1)%len(feeds)]
+            right=feeds[(pig+1)%len(feeds)]
+            other_side=feeds[(pig+len(feeds)//2)%len(feeds)]
+            tomorrow[pig]+=left+right+other_side
+
+        feeds=tomorrow.copy()
+        accumulated_feed=sum(tomorrow)
+        date+=1
+    
+    print(date)
