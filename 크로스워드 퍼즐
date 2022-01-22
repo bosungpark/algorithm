@@ -1,0 +1,21 @@
+N,M=map(int,input().split())
+U,L,R,D=map(int,input().split())
+
+matrix=list(list('#' for _ in range(L+R+M)) for _ in range(U+D+N))
+
+for i in range(N):
+    temp=list(input())
+    matrix[i+U][L:L+M]=temp
+
+for i in range(U+D+N):
+    for j in range(L+R+M):
+        if matrix[i][j]=='#':
+            if i%2==0 and j%2==1:
+                matrix[i][j]='.'
+            if i%2==1 and j%2==0:
+                matrix[i][j]='.'
+                
+for i in range(U+D+N):
+    for j in range(L+R+M):
+        print(matrix[i][j], end='')
+    print()
