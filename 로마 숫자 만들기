@@ -1,0 +1,10 @@
+from itertools import combinations_with_replacement
+
+N=int(input())
+romes=[1,5,10,50]
+
+answer=set()
+for i in list(combinations_with_replacement(romes,N)):
+    answer.add(sum(i))
+
+print(len(answer))
