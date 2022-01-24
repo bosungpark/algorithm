@@ -1,0 +1,10 @@
+N=int(input())
+M=int(input())
+
+rooms=[1 for _ in range(N)]
+for _ in range(M):
+    x,y=map(int, input().split())
+    for i in range(x,y):
+        rooms[i]=0
+
+print(rooms.count(1))
