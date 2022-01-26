@@ -1,0 +1,19 @@
+N,K,A,B=map(int, input().split())
+
+Flowerpot=list(K for _ in range(N))
+
+def HowManyDays():
+    day=1
+    while Flowerpot:
+        for i in range(len(Flowerpot)):
+            Flowerpot[i]-=1
+
+        for i in range(1,A+1):
+            Flowerpot[(day*A+i)%N]+=B
+
+        for flower in Flowerpot:
+            if flower<=0:
+                return print(day)
+        day+=1
+
+HowManyDays()
