@@ -1,0 +1,27 @@
+N=int(input())
+
+after_strings=list()
+answer=0
+for _ in range(N):
+    string=input()
+    after_string=''
+    
+    existed=dict()
+    value=1
+
+    for i in string:
+        if i in existed:
+            after_string+=str(existed[i])
+        else:
+            existed[i]=value
+            after_string+=str(value)
+            value+=1
+
+    after_strings.append(after_string)
+
+set_afterStrings=set(after_strings)
+for i in set_afterStrings:
+    n=after_strings.count(i)
+    answer+=n*(n-1)//2
+
+print(answer)
