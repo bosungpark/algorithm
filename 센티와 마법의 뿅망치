@@ -1,0 +1,35 @@
+import heapq
+
+N,H,T=map(int, input().split())
+
+giants=list()
+heapq.heapify(giants)
+
+for _ in range(N):
+    giant=int(input())
+    heapq.heappush(giants,(-giant,giant))
+
+def magicHamer():
+    cnt=0
+    for _ in range(T):
+        giant=heapq.heappop(giants)
+        if giant[1]>=H:
+            if giant[1]!=1:
+                giant=(-(giant[1]//2),giant[1]//2)
+                cnt+=1
+            heapq.heappush(giants,giant)
+        else:
+            print('YES')
+            print(cnt)
+            return
+
+    giant=heapq.heappop(giants)
+    if giant[1]>=H:
+        print('NO')
+        print(giant[1])
+        return
+    else:
+        print('YES')
+        print(cnt)
+        return
+magicHamer()
