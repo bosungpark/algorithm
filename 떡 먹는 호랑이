@@ -1,0 +1,14 @@
+D,K=map(int,input().split())
+
+tteog=['f','s']
+for i in range(1,D-1):
+    tteog.append(tteog[i]+tteog[i-1])
+
+def findTteog():
+    for f in range(K):
+        for s in range(K):
+            if f*tteog[-1].count('f')+s*tteog[-1].count('s')==K:
+                print(f)
+                print(s)
+                return
+findTteog()
