@@ -1,0 +1,6 @@
+N=int(input())
+
+crews=sorted(list(map(int, input().split())))
+
+energy=crews[N:2*N]
+print(energy[-1]-energy[0])
