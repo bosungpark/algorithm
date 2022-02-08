@@ -1,0 +1,14 @@
+import heapq
+
+N=int(input())
+Slimes=list(map(int,input().split()))
+
+heapq.heapify(Slimes)
+answer=0
+while len(Slimes)!=1:
+    slime1=heapq.heappop(Slimes)
+    slime2=heapq.heappop(Slimes)
+
+    answer+=slime1*slime2
+    heapq.heappush(Slimes,slime1+slime2)
+print(answer)
