@@ -1,0 +1,16 @@
+from collections import deque
+T=int(input())
+
+for _ in range(T):
+    N=int(input())
+    cards=deque(input().split())
+
+    answer=cards.popleft()
+    while cards:
+        card=cards.popleft()
+        if card>answer[0]:
+            answer=answer+card
+        else:
+            answer=card+answer
+            
+    print(answer)
