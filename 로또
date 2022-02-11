@@ -1,0 +1,14 @@
+from itertools import combinations
+
+while True:
+    try:
+        k,*K=map(int, input().split())
+
+        number_of_cases=list(combinations(K,6))
+
+        for number_array in number_of_cases:
+            print(*number_array)
+        print()
+
+    except:
+        break
