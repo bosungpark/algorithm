@@ -1,0 +1,13 @@
+while True:
+    try:
+        n=int(input())
+
+        num=1
+        while True:
+            if not num%n:
+                print(len(str(num)))
+                break
+            else:
+                num=num*10+1
+    except:
+        break
