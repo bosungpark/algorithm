@@ -1,0 +1,16 @@
+import sys
+
+n=int(sys.stdin.readline().strip())
+pattern=sys.stdin.readline().strip()
+start,end=pattern.split('*')
+
+words=list(sys.stdin.readline().strip() for _ in range(n))
+
+for word in words:
+    if len(word)<len(pattern)-1:
+        print("NE")
+    else:
+        if word.startswith(start) and word.endswith(end):
+            print("DA")
+        else:
+            print("NE")
