@@ -1,0 +1,14 @@
+from itertools import combinations
+
+n,m=map(int, input().split())
+
+upper=1
+for _ in range(m):
+    upper*=n
+    n-=1
+under=1
+for _ in range(m):
+    under*=m
+    m-=1
+
+print(upper//under)
