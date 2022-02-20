@@ -1,0 +1,22 @@
+import heapq
+
+N,M=map(int, input().split())
+gifts=list(map(int, input().split()))
+chidren=list(map(int, input().split()))
+
+gift_with_prioity=list()
+heapq.heapify(gift_with_prioity)
+for gift in gifts:
+    heapq.heappush(gift_with_prioity,[-gift,gift])
+
+def foo():
+    for child in chidren:
+        gift=heapq.heappop(gift_with_prioity)
+        if gift[1]>=child:
+            gift[0]+=child
+            gift[1]-=child
+            heapq.heappush(gift_with_prioity,gift)
+        else:
+            return print(0)
+    return print(1)
+foo()
