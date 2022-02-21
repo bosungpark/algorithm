@@ -1,0 +1,25 @@
+import sys
+from collections import defaultdict
+
+N,M=map(int,sys.stdin.readline().split())
+groups=defaultdict(list)
+
+for _ in range(N):
+
+    girlgroup=sys.stdin.readline().strip()
+    groups_num=int(sys.stdin.readline())
+
+    for _ in range(groups_num):
+        girl=sys.stdin.readline().strip()
+        groups[girlgroup].append(girl)
+        groups[girl]=girlgroup
+
+for _ in range(M):
+    key=sys.stdin.readline().strip()
+    quiz=sys.stdin.readline().strip()
+    
+    if quiz=='0':
+        for i in sorted(groups[key]):
+            print(i)
+    else:
+        print(groups[key])
