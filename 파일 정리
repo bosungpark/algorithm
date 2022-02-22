@@ -1,0 +1,11 @@
+import sys
+from collections import defaultdict
+
+files=defaultdict(int)
+N=int(sys.stdin.readline())
+for _ in range(N):
+    head,tail=sys.stdin.readline().strip().split('.')
+    files[tail]+=1
+
+for file in sorted(files.items()):
+    print(file[0],file[1])
