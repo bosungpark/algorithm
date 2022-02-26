@@ -1,0 +1,18 @@
+import sys
+
+N,Q=map(int, sys.stdin.readline().split())
+array=list(map(int, sys.stdin.readline().split()))
+
+left_shift=0
+for _ in range(Q):
+    commend=list(map(int, sys.stdin.readline().split()))
+
+    if commend[0]==1:
+        array[(left_shift+commend[1]-1)%N]+=commend[2]
+    elif commend[0]==2:
+        left_shift=(left_shift- commend[1])%N
+    elif commend[0]==3:
+        left_shift=(left_shift+ commend[1])%N
+
+array=array[left_shift:]+array[:left_shift]
+print(*array)
