@@ -1,0 +1,19 @@
+from collections import defaultdict
+
+N=int(input())
+
+for _ in range(N):
+    n=int(input())
+
+    dic=defaultdict(int)
+    d=2
+
+    while d<=n:
+        if n%d==0:
+            dic[d]+=1
+            n/=d
+        else:
+            d+=1
+
+    for i in sorted(dic.items()):
+        print(*i)
