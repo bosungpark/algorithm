@@ -1,0 +1,21 @@
+N=int(input())
+string=input().strip()
+alphabets='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+dic=dict()
+for alphabet in alphabets[:N]:
+    dic[alphabet]=input()
+
+stack=list()
+for s in string:
+    if s in alphabets:
+        stack.append(s)
+    else:
+        a=stack.pop()
+        b=stack.pop()
+
+        result=str(eval(dic[b]+s+dic[a]))
+        dic[result]=result
+        stack.append(result)
+
+print("{:.2f}".format(float(stack.pop())))
