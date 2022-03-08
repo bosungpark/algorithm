@@ -1,0 +1,40 @@
+from collections import defaultdict
+
+def correct_wolf():
+    word=input().strip()
+    words=defaultdict(int)
+
+    for i in range(len(word)-1):
+        if word[i]==word[i+1]:
+            words[word[i]]+=1
+        else:
+            if word[i]=='w' and word[i+1]=='o':
+                words[word[i]]+=1
+            elif word[i]=='o' and word[i+1]=='l':
+                words[word[i]]+=1
+            elif word[i]=='l' and word[i+1]=='f':
+                words[word[i]]+=1
+            elif word[i]=='f' and word[i+1]=='w':
+                words[word[i]]+=1
+                verification=set()
+                for i in 'wolf':
+                    verification.add(words[i])
+
+                if len(verification)==1:
+                     words=defaultdict(int)
+                else:
+                    return print(0)
+            else:
+                return print(0)
+                
+    words[word[-1]]+=1
+    verification=set()
+    for i in 'wolf':
+        verification.add(words[i])
+
+    if len(verification)==1:
+        return print(1)
+    else:
+        return print(0)
+
+correct_wolf()
