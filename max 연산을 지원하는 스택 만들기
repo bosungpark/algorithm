@@ -1,0 +1,67 @@
+import sys
+
+"""
+Stack 클래스는 기본적인 기능에 최댓값을 찾는 기능을 추가한 스택 클래스입니다.
+연산은 상수의 시간복잡도를 가집니다.
+
+스택은 입력과 출력이 한 군데에서 이루어진다는 점에서 아이디어를 얻었습니다.
+이 점을 고려하면 시간에 따른 최댓값의 변화를 인덱스에 저장할 수 있습니다.
+
+max_value_stack은 각 연산 시점의 최댓값을 저장한 스택입니다.
+push() 연산 시에 items에는 입력값을, max_value_stack에는 현재시점 최댓값을 저장해줍니다.
+pop() 연산 시에는 items과 max_value_stack의 마지막 값을 제거해줍니다.
+정렬이 필요없다는 점에서 get_max()의 시간복잡도는 O(1)입니다.
+
+예:
+	입력= 1->2->3->4->1
+	items=[1,2,3,4,1]
+	max_value_stack=[1,2,3,4,4]
+"""
+class Stack:
+	def __init__(self):
+		self.items=[]
+		self.max_value_stack = []
+		
+	def push(self, item):
+		if self.items==[]:
+			self.items.append(item)
+			self.max_value_stack.append(item)
+		else:
+			if item > self.max_value_stack[-1]:
+				self.items.append(item)
+				self.max_value_stack.append(item)
+			else:
+				self.items.append(item)
+				self.max_value_stack.append(self.max_value_stack[-1])
+		
+	def pop(self):		
+		self.max_value_stack.pop()
+		return self.items.pop()
+	
+	def is_empty(self):
+		return self.items==[]
+	
+	def get_max(self):
+		return self.max_value_stack[-1]
+'''
+각 연산은 상수의 시간복잡도를 가지므로
+테스트케이스가 n개라고 가정하면 시간복잡도는 O(n)일 것이라고 판단했습니다.
+'''
+stack=Stack()
+while True:
+	command=list(sys.stdin.readline().split())
+
+	if command[0]=='exit':
+		break
+	elif command[0]=='push':
+		stack.push(int(command[1]))
+	elif command[0]=='pop':
+		if stack.is_empty():
+			print('EMPTY')
+		else:
+			print(stack.pop())
+	elif command[0]=='max':
+		if stack.is_empty():
+			print('EMPTY')
+		else:
+			print(stack.get_max())
