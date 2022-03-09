@@ -1,0 +1,42 @@
+from collections import deque
+
+"""
+문제 풀이:
+
+정렬을 활용한 간단한 풀이 방법을 생각해보았다.
+우선 입력받을 배열을 정렬해준다.
+그리고 deque로 변환한다.
+이후 배열의 최소값과 최댓값을 번갈아가며 배열 B에 추가해 반환한다.
+
+추가로 n이 홀수일 경우를 대비해 예외처리를 해주었다.
+
+이 방법의 장점은 간편하고 확실하다는 것이다.
+시간 복잡도는 정렬에 소요되는 O(n log n)을 가지게 된다.
+
+개선방안:
+
+알고리즘을 개선하려면 O(n)까지도 개선이 가능할 것 같다.
+deque 배열 A의 값을 popleft해 변수 a에 할당한다.
+이후 deque 배열 B에 추가해준다.
+이때 만약 B의 맨 앞의 값보다 크다면 B에 appendleft를,
+맨 뒤의 값보다 작다면 B에 append를,
+어느 경우에도 해당하지 않아 B에 추가하는 것이 곤란하다면, A에 append 해준다.
+
+다만 이 방식은 앞선 풀이보다 구현이 조금 번거로우므로,
+시간제한이 까다로운 문제가 아니라면 앞선 풀이를 이용할 것 같다.
+"""
+def solve(A):
+	A=deque(sorted(A))
+	B=list()
+	while A:
+		try:
+			small=A.popleft()
+			big=A.pop()
+		
+			B.append(small)
+			B.append(big)
+		except:
+			small=A.popleft()
+			
+			B.append(small)
+	return B
