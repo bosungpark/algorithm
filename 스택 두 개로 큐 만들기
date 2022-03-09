@@ -1,0 +1,43 @@
+import sys
+
+class Stack:
+	def __init__(self):
+		self.items=[]
+		
+	def push(self, item):
+		self.items.append(item)
+		
+	def pop(self):
+		return self.items.pop()
+	
+	def is_empty(self):
+		return self.items==[]
+	
+class CustomQueue:
+	def __init__(self):
+		self.stack1=Stack()
+		self.stack2=Stack()
+		
+	def enqueue(self,item):
+		self.stack1.push(item)
+		
+	def dequeue(self):
+		if self.stack2.is_empty():
+			while self.stack1.is_empty() is False:
+				self.stack2.push(self.stack1.pop())
+				
+		return self.stack2.pop()
+	
+queue=CustomQueue()
+while True:
+	command=list(sys.stdin.readline().split())
+	
+	if command[0]=='exit':
+		break
+	elif command[0]=='enq':
+		queue.enqueue(command[1])
+	elif command[0]=='deq':
+		if queue.stack1.is_empty() and queue.stack2.is_empty():
+			print('EMPTY')
+		else:
+			print(queue.dequeue())
