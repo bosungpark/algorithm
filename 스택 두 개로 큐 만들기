@@ -1,5 +1,9 @@
 import sys
 
+"""
+Stack 클래스는 기본적인 기능만을 갖춘 스택 클래스입니다.
+연산은 상수의 시간복잡도를 가집니다.
+"""
 class Stack:
 	def __init__(self):
 		self.items=[]
@@ -12,7 +16,26 @@ class Stack:
 	
 	def is_empty(self):
 		return self.items==[]
-	
+
+"""
+CustomQueue는 스택 두 개를 가지고 만든 큐 입니다.
+큐를 구성하는 스택은 stack1과 stack2가 있습니다.
+만약 enqueue 명령어가 주어진다면 우선 stack1에 저장합니다.
+dequeue 명령어가 주어졌을때, stack2가 비어있다면 stack1의 데이터를 가져옵니다.
+이때, 스택은 선입후출 구조이므로 자연스럽게 stack2는 큐 배열과 같은 성질을 가지게 됩니다.
+
+예)  입력: 1->2->3->4
+		데이터 이동 전: stack1=[1,2,3,4]
+		데이터 이동 후: stack2=[4,3,2,1]
+		데이터 추출: stack2.dequeue()==1
+		
+		!! 전체적인 구조상 선입선출이 가능해진다 !!
+		
+CustomQueue의 시간복잡도는 O(n)이라고 생각합니다.
+이유는 연산 자체는 상수의 시간복잡도를 가지지만, 데이터를 이동하는 과정이 남아있기 때문입니다.
+결과적으로 모든 입력값이 stack1에서 stack2로 이동합니다.
+따라서 시간복잡도는 O(n)이라고 추측하였습니다.
+"""
 class CustomQueue:
 	def __init__(self):
 		self.stack1=Stack()
@@ -27,7 +50,12 @@ class CustomQueue:
 				self.stack2.push(self.stack1.pop())
 				
 		return self.stack2.pop()
-	
+"""
+문제가 요구하는 바에 따라 구현하였습니다.
+명령을 수행하고, 만약 큐가 비었다면 EMPTY를 아니라면 값을 출력해주었습니다.
+
+전체적인 시간복잡도는 시간복잡도는 O(n)입니다.
+"""
 queue=CustomQueue()
 while True:
 	command=list(sys.stdin.readline().split())
