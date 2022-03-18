@@ -1,0 +1,29 @@
+"""
+목표구간 합 찾기와 비슷한 문제라고 생각했다.
+구간을 나누는 것이 포인트이다.
+이를 위해 삽입과 삭제가 자유로운 deque() 자료구조를 사용하였다.
+
+수행시간은 O((n-k)*k)라고 생각한다.
+이유는 n-k번 구간이 변화하기 때문이다.
+구간 안에서 매번 최솟값을 찾아야 하므로 여기에 k를 곱해주었다.
+
+이 외의 삽입 삭제에 걸리는 시간은 상수 시간이므로 생략했다.
+"""
+
+from collections import deque
+
+n,k=map(int, input().split())
+array=deque(map(int, input().split()))
+
+
+section=deque()
+answer=list()
+for element in array:
+	if len(section)<k:
+		section.append(element)
+	if len(section)>k:
+		section.popleft()
+	if len(section)==k:
+		answer.append(min(section))
+		section.popleft()
+print(*answer)
