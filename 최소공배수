@@ -1,0 +1,13 @@
+import sys
+"""
+유클리드 호재법을 사용한 풀이
+"""
+T=int(sys.stdin.readline())
+for _ in range(T):
+    A,B=map(int,sys.stdin.readline().split())
+    mul=A*B
+
+    while B:
+        A,B=B,A%B
+    print(mul//A)
+
