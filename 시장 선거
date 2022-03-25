@@ -1,0 +1,19 @@
+""" 
+자료구조로는 리스트와 딕셔너리를 사용했다. 
+Counter함수를 사용하면 시퀀스 객체에 있는 원소들의 갯수를 세어 딕셔너리 형태로 반환한다. 
+Counter함수는 시퀀스 객체의 원소들에 대해 한 번씩 접근하므로 O(n)의 비교를 수행하기까지 시간복잡도를 가진다. 
+이렇게 비교된 dict()에서 가장 큰 값을 가져오는 과정 역시 O(n)의 시간복잡도가 걸린다. 
+따라서 전체적인 시간 복잡도는 O(2*n)이므로 O(n)의 시간복잡도를 가진다. 
+""" 
+
+from collections import Counter 
+
+n=int(input()) 
+
+elected_vote=Counter(list(map(int, input().split()))).most_common(1) 
+cnt=elected_vote[0][1] 
+
+if cnt>n/2: 
+  print(elected_vote[0][0]) 
+else: 
+  print(-1)
