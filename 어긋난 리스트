@@ -1,0 +1,25 @@
+"""
+저는 이 문제에 대해 단순하게 접근하였습니다.
+
+우선 정상적인 오름차순에서의 최솟값을 start_point라고 하였습니다.
+이 start_point는 리스트를 순차적으로 탐색하면 확인할 수 있습니다.
+인접한 두 요소 중, 만일 앞의 요소가 뒤의 요소보다 크다면, 뒤의 요소가 start_point가 됩니다.
+이 start_point로 회전의 횟수를 유추할 수 있습니다.
+
+저는 리스트의 전체 길이에서 start_point의 인덱스를 뺀 값을 리스트의 전체 길이로 나눈 나머지 구해주었습니다.
+리스트의 전체길이로 나눈 이유는 회전 횟수가 최고 n-1번이기 때문입니다.
+
+시간복잡도는 최악의 경우에 O(n)을 가집니다.
+"""
+
+array=list(map(int, input().split()))
+n=len(array)
+
+start_point=0
+for i in range(n-1):
+	if array[i]>array[i+1]:
+		start_point=i+1
+		break
+		
+print((n-start_point)%n)
+	
