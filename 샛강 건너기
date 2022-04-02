@@ -1,0 +1,33 @@
+"""
+저는 이 문제를 이분탐색을 통해 해결하였습니다.
+사실 접근법은 조합을 이용한 방법, 브루트포스한 방법 등 훤씬 편리한 방법이 많습니다.
+하지만 문제에서 요구하는 시간 조건을 지키기 위해서는 오직 이분탐색만이 정답이라는 생각이 들었습니다.
+
+우선 바위 k개를 제거하는 최소거리의 최댓값은 k+1개를 제거하는 최소거리의 최소값-1입니다.
+따라서 점프해야하는 거리를 기준으로 이분탐색을 진행하였습니다.
+이러한 접근으로 문제를 바라보면 매우 쉬워집니다.
+
+시간 복잡도는 n*log(n)입니다.
+"""
+
+
+L,n,k=map(int, input().split())
+stones=list(map(int, input().split()))+[L]
+
+left=1
+right=L+1
+while left<right:
+	mid=(left+right)//2
+	cnt=0
+	temp=0
+	for stone in stones+[L]:
+		if stone-temp<mid:
+			cnt+=1
+		else:
+			temp=stone
+	if cnt<k+2:
+		left=mid+1
+	else:
+		right=mid
+answer=left-1
+print(answer)
