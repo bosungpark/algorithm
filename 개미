@@ -1,0 +1,19 @@
+n1,n2=map(int, input().split())
+
+ant1=list(map(lambda x: (x,1),input()))[::-1]
+ant2=list(map(lambda x: (x,2),input()))
+ants=ant1+ant2
+
+t=int(input())
+
+for _ in range(t):
+    i=0
+    while i<n1+n2-1:
+        if ants[i][1]-ants[i+1][1]<0:
+            ants[i],ants[i+1]=ants[i+1],ants[i]
+            i+=2
+        else:
+            i+=1
+
+for a in ants:
+    print(a[0], end='')
