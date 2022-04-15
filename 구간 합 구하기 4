@@ -1,0 +1,13 @@
+import sys
+
+n,m=map(int, sys.stdin.readline().split())
+
+array=list(map(int, input().split()))
+dp=[0 for _ in range(n+1)]
+
+for i in range(n):
+    dp[i+1]=dp[i]+array[i]
+
+for _ in range(m):
+    i,j=map(int, sys.stdin.readline().split())
+    print(dp[j]-dp[i-1])
