@@ -1,0 +1,45 @@
+"""
+dfs를 사용해 O(n)의 시간에 preorder, postorder 배열을 만들었습니다.
+이후 질의에 필요한 시간을 단축(O(1))하기 위해 배열은 딕셔너리 형태로 저장하였습니다.
+"""
+
+
+import sys
+from collections import defaultdict
+
+sys.setrecursionlimit(10000)
+
+n, q=map(int, sys.stdin.readline().split())
+graph=defaultdict(list)
+
+for _ in range(n-1):
+	p, c=map(int, sys.stdin.readline().split())
+	graph[p].append(c)
+	
+def pre_dfs(graph, p, visited):
+	visited[p]=len(visited)
+	for node in sorted(graph[p]):
+		if node not in visited:
+			pre_dfs(graph, node, visited)
+	return visited
+
+def post_dfs(graph, p, visited):
+	for node in sorted(graph[p]):
+		if node not in visited:
+			post_dfs(graph, node, visited)
+	visited[p]=len(visited)
+	return visited
+
+preorder=pre_dfs(graph, p=1, visited=dict())
+postorder=post_dfs(graph, p=1, visited=dict())
+
+cnt=0
+for _ in range(q):
+	u, v=map(int, sys.stdin.readline().split())	
+	
+	pre=preorder[u]<=preorder[v]
+	post=postorder[u]>=postorder[v]
+	if pre and post:
+		cnt+=1
+	
+print(cnt)
