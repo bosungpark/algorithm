@@ -1,0 +1,51 @@
+import math
+
+N=int(input())
+primes=[]
+
+def is_prime_num(i):
+    for j in range(2, int(math.sqrt(i))+1):
+        if i % j == 0:
+            return False
+    return True
+
+for i in range(2,N+1):
+    if is_prime_num(i):
+        primes.append(i)
+
+
+def find_possibility():
+    if N==1:
+        cnt=0
+        return print(cnt)
+
+    start=0
+    end=0
+
+    sum=primes[end]
+    cnt=0
+    while start<=end and end<len(primes):
+        try:
+            if sum<N:
+                end+=1
+                sum+=primes[end]
+            elif sum>N:
+                sum-=primes[start]
+                start+=1
+            elif sum==N:
+                cnt+=1
+                sum-=primes[start]
+                start+=1
+                end+=1
+                sum+=primes[end] 
+        except:
+            while start<len(primes)-1:
+                sum-=primes[start]
+                start+=1
+
+                if sum==N:
+                    cnt+=1  
+                    break 
+    return print(cnt)
+
+find_possibility()
