@@ -1,0 +1,21 @@
+N=int(input())
+array=sorted(list(map(int, input().split())))
+
+start=0
+end=N-1
+
+minimum=float("inf")
+a,b=0,N-1
+while start<end and end<N:
+    if abs(array[start]+array[end])<minimum:
+        minimum=abs(array[start]+array[end])
+        a,b=start,end
+    if array[start]+array[end]==0:
+        a,b=start,end
+        break
+    elif array[start]+array[end]<0:
+        start+=1
+    elif array[start]+array[end]>0:
+        end-=1
+    
+print(array[a],array[b])
