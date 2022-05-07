@@ -1,0 +1,7 @@
+n=int(input())
+
+cnt=0
+if not n%2:
+    print("CY")
+else:
+    print("SK")
