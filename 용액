@@ -1,0 +1,22 @@
+
+N=int(input())
+array=list(map(int, input().split()))
+
+start=0
+end=N-1
+
+temp=float('inf')
+a,b=0,0
+while start<end:
+    if temp>abs(array[start]+array[end]):
+        temp=abs(array[start]+array[end])
+        a,b=array[start],array[end]
+    if end-start<=1:
+        break 
+    if array[start]+array[end]==0:
+        break
+    elif array[start]+array[end]<0 and end-start!=1:
+        start+=1
+    elif array[start]+array[end]>0 and end-start!=1:
+        end-=1
+print(a,b)
