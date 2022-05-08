@@ -1,0 +1,10 @@
+import sys
+
+N=int(sys.stdin.readline())
+dp=list(float(sys.stdin.readline()) for _ in range(N))
+
+for i in range(1,N):
+    dp[i]=max(dp[i],dp[i]*dp[i-1])
+
+answer=round(max(dp), 3)
+print(f"{answer:.3f}")
