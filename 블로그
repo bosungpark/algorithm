@@ -1,0 +1,38 @@
+N,X=map(int, input().split())
+peoples=list(map(int, input().split()))
+
+start=0
+end=X-1
+
+cnt=0
+temp=sum(peoples[:X])
+maximum=-float('inf')
+if N==X:
+    if temp==0:
+        print("SAD")
+    else:       
+        print(temp)
+        print(1)
+else:
+    while end<N-1:
+        if maximum==temp:
+            cnt+=1
+        elif maximum<temp:
+            maximum=temp
+            cnt=1  
+
+        temp-=peoples[start]
+        start+=1
+        end+=1
+        temp+=peoples[end]
+
+    if maximum==temp:
+        cnt+=1
+    elif maximum<temp:
+        maximum=temp
+        cnt=1  
+    if maximum==0:
+        print("SAD")
+    else:
+        print(maximum)
+        print(cnt)
