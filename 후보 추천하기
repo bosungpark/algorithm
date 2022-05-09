@@ -1,0 +1,19 @@
+N=int(input())
+M=int(input())
+votes=list(map(int, input().split()))
+#학번: [추천수,인덱스]
+students=dict()
+
+
+for idx, vote in enumerate(votes):
+    if vote not in students:
+        if len(students)<N:
+            students[vote]=[1,idx]
+        else:
+            min_key=min(students, key=lambda x: (students[x][0],students[x][1]))
+            students.pop(min_key,None)
+            #16번째 줄이 포인트!->아..정말 바보같은데 왜 지우는거에만 몰두해서 추가하는걸 까먹었지..
+            students[vote]=[1,idx]
+    else:
+        students[vote][0]+=1
+print(*sorted(students))
