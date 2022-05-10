@@ -1,0 +1,12 @@
+S=input()
+
+if len(S)==1:
+    print(1)
+else:
+    stack=[]
+    for s in S:
+        stack.append(s)
+        while len(stack)>1 and stack[-2]=="(" and stack[-1]==")":
+            stack.pop()
+            stack.pop()
+    print(len(stack))
