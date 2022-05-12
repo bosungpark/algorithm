@@ -1,0 +1,13 @@
+import sys
+
+T=int(sys.stdin.readline())
+dp=[0 for _ in range(10000+1)]
+dp[1]=1
+dp[2]=1
+for j in range(3,10000+1):
+    dp[j]=(dp[j-1]+dp[j-2])
+
+for i in range(1,T+1):
+    P,Q=map(int,sys.stdin.readline().split())
+    answer=dp[P]%Q
+    print(f"Case #{i}: {answer}")
