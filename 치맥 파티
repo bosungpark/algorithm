@@ -1,0 +1,35 @@
+"""
+시간 복잡도는 O(T)입니다.
+접근법은 간단합니다.
+우선 최악의 경우 a,b는 1이상의 정수라 하셨으니, T번 순회합니다.
+하지만 이 외의 경우 t개 이하의 a의 갯수를 먼저 정합니다.
+그후 전체 시간에서 a를 i개 먹는 시간을 뺍니다.
+그러고는 b를 비교해 먹을수 있는 치킨의 수와 나머지를 정했습니다.
+마지막으로 비교를 통해 최대 치킨의 수를 저장해주었습니다.
+"""
+
+a,b,t= map(int, input().split())
+
+cnt=0
+left=float("inf")
+
+for i in range(t+1):
+	time=t
+	time-=a*i
+	if time<0:
+		break
+	v,l=time//b,time%b
+	# print(time,v,i,l)	
+	if not l:
+		cnt=max(cnt,v+i)
+		left=0
+	elif l and left>l:
+		if cnt<v+i:
+			cnt=v+i
+			left=l
+	# print(cnt, left)
+	# print()
+if not left or left==float("inf"):
+	print(cnt)
+else:
+	print(cnt, left)
